@@ -1,0 +1,41 @@
+networks:
+  mw_trust_bubble:
+    driver: bridge
+  scary_internet:
+    driver: bridge
+
+volumes:
+  elasticsearch_data_vol:
+    external: false
+
+services:
+  mw_elasticsearch:
+    image: elasticsearch:7.16.3
+    volumes:
+      - elasticsearch_data_vol:/usr/share/elasticsearch/data
+    networks:
+      - mw_trust_bubble
+
+  mw:
+    build:
+      context: .
+    command: python manage.py runserver
+    depends_on:
+      - mw_elasticsearch
+    volumes:
+      - ./:/code:cached
+    networks:
+      - mw_trust_bubble
+      - scary_internet  # TODO let outer_api handle scary
+
+  # outer_api:
+  #   build:
+  #     context: .
+  #   command: python manage.py run_outer_api
+  #   depends_on:
+  #     - mw
+  #   volumes:
+  #     - ./:/code:cached
+  #   networks:
+  #     - scary_internet
+  #     - mw_trust_bubble
