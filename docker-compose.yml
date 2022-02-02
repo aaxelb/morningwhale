@@ -10,7 +10,9 @@ volumes:
 
 services:
   mw_elasticsearch:
-    image: elasticsearch:7.16.3
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.1
+    environment:
+      discovery.type: single-node
     volumes:
       - elasticsearch_data_vol:/usr/share/elasticsearch/data
     networks:
@@ -26,7 +28,6 @@ services:
       - ./:/code:cached
     networks:
       - mw_trust_bubble
-      - scary_internet  # TODO let outer_api handle scary
 
   # outer_api:
   #   build:

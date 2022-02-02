@@ -1,7 +1,5 @@
 django==4.0.1
-elasticsearch[async]==7.17.0
 
-
-# TODO: release es7 support in django-elasticsearch-metrics
-git+git://github.com/aaxelb/django-elasticsearch-metrics.git@es7
+# TODO: release django-elasticsearch-metrics
+git+git://github.com/aaxelb/django-elasticsearch-metrics.git@es6
 #django-elasticsearch-metrics==5.0.0

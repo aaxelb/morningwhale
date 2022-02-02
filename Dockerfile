@@ -4,14 +4,15 @@ FROM python:3.10-alpine as py_app
 
 RUN apk add --no-cache git
 
+COPY requirements.txt /code/requirements.txt
+RUN pip install -U pip
+RUN pip install -Ur /code/requirements.txt
+
 # everything in . is copied -- use .dockerignore to keep garbage out
 RUN mkdir -p /code
 COPY . /code
 WORKDIR /code
 
-
-RUN pip install -U pip
-RUN pip install -Ur /code/requirements.txt
 ## END py_app
 
 
