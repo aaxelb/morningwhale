@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'elasticsearch_metrics',
+    'morningwhale',
 ]
 
 MIDDLEWARE = [
@@ -121,3 +123,32 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# settings for django-elasticsearch-metrics
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': 'elasticsearch6:9200',  # TODO env var
+    },
+}
+
+# logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        # 'mw_dogfood': {
+        #     'class': 'logging.handlers.HTTPHandler',
+        #     'level': 'DEBUG',
+        #     'host': 'mw',
+        #     'url': '/v0/logged-event',
+        #     'method': 'POST',
+        # },
+    },
+    'loggers': {
+        # '': {
+        #     'handlers': ['mw_dogfood'],
+        #     'level': 'DEBUG',
+        # },
+    },
+}
