@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -128,7 +129,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings for django-elasticsearch-metrics
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'elasticsearch6:9200',  # TODO env var
+        'hosts': os.environ.get('ELASTICSEARCH_HOST', 'mw_elasticsearch:9200'),
     },
 }
 ELASTICSEARCH_METRICS_DATE_FORMAT = '%Y.%m'
