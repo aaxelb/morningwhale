@@ -1,6 +1,6 @@
 
 ## BEGIN py_app: our basic python app with (dev-)requirements.txt
-FROM python:3.10-alpine as py_app
+FROM python:3.9-alpine as py_app
 
 RUN apk add --no-cache git
 
