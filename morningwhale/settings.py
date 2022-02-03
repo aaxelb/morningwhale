@@ -131,6 +131,7 @@ ELASTICSEARCH_DSL = {
         'hosts': 'elasticsearch6:9200',  # TODO env var
     },
 }
+ELASTICSEARCH_METRICS_DATE_FORMAT = '%Y.%m'
 
 # logging
 LOGGING = {
